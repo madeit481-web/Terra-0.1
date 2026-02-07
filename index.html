@@ -1,28 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>저녁 메뉴 추천</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <h1>Lotto Number Generator</h1>
-        <button id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
-        <div class="container">
-            <div class="lotto-numbers">
-                <span class="number"></span>
-                <span class="number"></span>
-                <span class="number"></span>
-                <span class="number"></span>
-                <span class="number"></span>
-                <span class="number"></span>
-            </div>
-            <button id="generate-btn">Generate Numbers</button>
+    <div class="container">
+        <h1>오늘의 저녁 메뉴는?</h1>
+        <div class="menu-card">
+            <img id="menu-image" src="" alt="추천 메뉴" class="menu-image">
+            <h2 id="menu-name" class="menu-name"></h2>
+            <p id="menu-description" class="menu-description"></p>
         </div>
-    </main>
+        <button id="recommend-btn" class="recommend-button">다른 메뉴 추천!</button>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
