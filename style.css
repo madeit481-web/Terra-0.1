@@ -1,15 +1,36 @@
 
+html {
+    transition: all 0.3s ease;
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0; /* Light mode background */
+    color: #333; /* Light mode text color */
+    transition: all 0.3s ease;
+}
+
+body.dark-theme {
+    background-color: #222; /* Dark mode background */
+    color: #eee; /* Dark mode text color */
 }
 
 main {
     text-align: center;
+    background-color: #fff; /* Light mode main background */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+body.dark-theme main {
+    background-color: #333; /* Dark mode main background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .container {
@@ -27,13 +48,20 @@ main {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #fff; /* Light mode number background */
     border: 2px solid #ccc;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+body.dark-theme .number {
+    background-color: #555; /* Dark mode number background */
+    border-color: #777;
+    color: #eee;
 }
 
 #generate-btn {
@@ -44,7 +72,29 @@ main {
     border-radius: 5px;
     background-color: #4CAF50;
     color: white;
+    transition: all 0.3s ease;
 }
+
+body.dark-theme #generate-btn {
+    background-color: #28a745; /* Dark mode generate button */
+}
+
+#theme-toggle {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+body.dark-theme #theme-toggle {
+    background-color: #6c757d; /* Dark mode toggle button */
+}
+
 
 .dark-theme main {
     background-color: #333;
