@@ -3,6 +3,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuName = document.getElementById('menu-name');
     const menuDescription = document.getElementById('menu-description');
     const recommendBtn = document.getElementById('recommend-btn');
+    const themeToggle = document.getElementById('checkbox');
+    const body = document.body;
+    const themeText = document.querySelector('.theme-switch-wrapper em');
+
+    // Theme switching logic
+    function setTheme(isDarkMode) {
+        if (isDarkMode) {
+            body.classList.add('dark-mode');
+            themeText.textContent = 'Disable Dark Mode!';
+        } else {
+            body.classList.remove('dark-mode');
+            themeText.textContent = 'Enable Dark Mode!';
+        }
+    }
+
+    function toggleTheme() {
+        const isDarkMode = themeToggle.checked;
+        setTheme(isDarkMode);
+        localStorage.setItem('darkMode', isDarkMode);
+    }
+
+    // Load saved theme from localStorage or default to system preference
+    const savedTheme = localStorage.getItem('darkMode');
+    if (savedTheme !== null) {
+        const isDarkMode = savedTheme === 'true';
+        themeToggle.checked = isDarkMode;
+        setTheme(isDarkMode);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // Default to system dark mode if no preference saved
+        themeToggle.checked = true;
+        setTheme(true);
+    }
+
+    themeToggle.addEventListener('change', toggleTheme);
 
     const dinnerMenus = [
         {
