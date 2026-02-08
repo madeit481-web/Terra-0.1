@@ -42,37 +42,37 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "스테이크 (Steak)",
             description: "육즙 가득한 스테이크에 구운 채소를 곁들인 고급스러운 저녁 식사.",
-            imageUrl: "https://images.unsplash.com/photo-1546069901-dcded722d325"
+            imageUrl: "https://cdn.pixabay.com/photo/2016/09/01/06/37/steak-1635399_1280.jpg"
         },
         {
             name: "파스타 (Pasta)",
             description: "신선한 토마토 소스와 바질로 맛을 낸 이탈리아 파스타.",
-            imageUrl: "https://images.unsplash.com/photo-1551887201-97b7cb1d7e26"
+            imageUrl: "https://cdn.pixabay.com/photo/2017/11/22/00/00/pasta-2964998_1280.jpg"
         },
         {
             name: "초밥 (Sushi)",
             description: "다양한 신선한 해산물로 만든 일본 전통 초밥 세트.",
-            imageUrl: "https://images.unsplash.com/photo-1579584425316-f36615f79590"
+            imageUrl: "https://cdn.pixabay.com/photo/2017/04/27/09/25/sushi-2264627_1280.jpg"
         },
         {
             name: "한정식 (Korean Full Course Meal)",
             description: "다채로운 반찬과 메인 요리로 구성된 푸짐한 한국 전통 한정식.",
-            imageUrl: "https://images.unsplash.com/photo-1577905470535-f09c2a6d7b2e"
+            imageUrl: "https://cdn.pixabay.com/photo/2017/09/25/08/42/korean-food-2784577_1280.jpg"
         },
         {
             name: "타코 (Taco)",
             description: "매콤한 고기와 신선한 채소가 어우러진 멕시칸 타코.",
-            imageUrl: "https://images.unsplash.com/photo-1565299624946-b28f40a0298e"
+            imageUrl: "https://cdn.pixabay.com/photo/2019/08/21/21/20/taco-4422205_1280.jpg"
         },
         {
             name: "피자 (Pizza)",
             description: "쭉 늘어나는 치즈와 토핑이 일품인 따끈따끈한 피자.",
-            imageUrl: "https://images.unsplash.com/photo-1604382164746-cf10be807dd5"
+            imageUrl: "https://cdn.pixabay.com/photo/2016/03/05/19/02/pizza-1238933_1280.jpg"
         },
         {
             name: "샐러드 (Salad)",
             description: "신선한 채소와 닭가슴살, 드레싱이 어우러진 건강한 샐러드.",
-            imageUrl: "https://images.unsplash.com/photo-1540189549336-e619d08e2d42"
+            imageUrl: "https://cdn.pixabay.com/photo/2017/01/10/19/20/salad-1969248_1280.jpg"
         }
     ];
 

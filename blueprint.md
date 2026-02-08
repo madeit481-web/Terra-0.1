@@ -11,18 +11,18 @@ This project is a simple web application demonstrating basic HTML, CSS, and Java
     - JavaScript logic in `main.js` to handle theme switching, save user preference to `localStorage`, and apply the theme on page load.
     - Localized theme toggle text to Korean.
 - **Improved Image Display:**
-    - Replaced `loremflickr.com` random image generation with curated, high-quality, royalty-free image URLs for each menu item to ensure accurate matching.
+    - **Troubleshooting:** Previous attempts to use `unsplash.com` and `loremflickr.com` for image sourcing led to issues (hotlinking restrictions, inconsistent matching, perceived slow loading).
+    - **Solution:** Replaced image sources with specific, directly embeddable, high-quality Pixabay URLs for each menu item to ensure accurate matching, reliability, and faster loading.
     - Implemented a loading mechanism to hide the image (`opacity: 0`) until it's fully loaded (`onload` event), then make it visible (`opacity: 1`), to improve perceived loading speed and prevent flickering.
 - **Trendy Background:**
     - Implemented a subtle, modern gradient background using CSS variables, adapting to both light and dark modes.
 
-## Plan for Current Change: Match Images to Names & Trendy Background
+## Plan for Current Change: Resolve Image Display Issues and Verify Previous Features
 
 ### Steps:
 1.  **Update `main.js`:**
-    *   Replaced `imageKeyword` with `imageUrl` in the `dinnerMenus` array, using specific, curated URLs for each food item.
-    *   Modified the `displayMenu` function to use `menu.imageUrl` directly.
-2.  **Update `style.css`:**
-    *   Implemented a subtle gradient background for the `body` element, defined using CSS variables that adapt to light and dark modes.
-3.  **Verify:** Test if food images now consistently match their names, load quickly, and if the background is aesthetically pleasing in both themes.
-4.  **Commit and Push:** Stage, commit, and push the changes to the GitHub repository.
+    *   Replaced `imageUrl`s in the `dinnerMenus` array with new, directly embeddable URLs from Pixabay.
+    *   Confirmed the `displayMenu` function correctly uses `menu.imageUrl`.
+    *   Re-verified that theme text localization and image loading mechanisms are intact.
+2.  **Verify:** Test if food images now consistently match their names, load correctly and quickly, if the background is aesthetically pleasing in both themes, and if the dark/light mode toggle text is correctly localized.
+3.  **Commit and Push:** Stage, commit, and push the verified changes to the GitHub repository.
