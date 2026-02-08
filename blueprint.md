@@ -9,19 +9,20 @@ This project is a simple web application demonstrating basic HTML, CSS, and Java
     - A toggle button in `index.html` to switch between themes.
     - CSS styles defined in `style.css` using CSS variables to manage colors for both dark and light themes.
     - JavaScript logic in `main.js` to handle theme switching, save user preference to `localStorage`, and apply the theme on page load.
-- **Improved Image Display (Initial):**
-    - Changed image source from `source.unsplash.com` to `loremflickr.com` for better reliability and relevance.
-    - Added cache busting parameter to image URLs.
-    - Implemented basic error handling for image loading with a fallback placeholder.
+    - Localized theme toggle text to Korean.
+- **Improved Image Display:**
+    - Replaced `loremflickr.com` random image generation with curated, high-quality, royalty-free image URLs for each menu item to ensure accurate matching.
+    - Implemented a loading mechanism to hide the image (`opacity: 0`) until it's fully loaded (`onload` event), then make it visible (`opacity: 1`), to improve perceived loading speed and prevent flickering.
+- **Trendy Background:**
+    - Implemented a subtle, modern gradient background using CSS variables, adapting to both light and dark modes.
 
-## Plan for Current Change: Enhance Image Quality/Speed and Localize Theme Text
+## Plan for Current Change: Match Images to Names & Trendy Background
 
 ### Steps:
 1.  **Update `main.js`:**
-    *   **Image Enhancements:**
-        *   Modified `loremflickr.com` image URL to include more specific keywords (`food,plate,isolated,high-quality`) to encourage better quality and less background in images.
-        *   Implemented a loading mechanism to hide the image (`opacity: 0`) until it's fully loaded (`onload` event), then make it visible (`opacity: 1`), to improve perceived loading speed and prevent flickering.
-    *   **Theme Text Localization:**
-        *   Translated the dark/light mode toggle text ("Enable Dark Mode!" / "Disable Dark Mode!") to Korean ("다크 모드 활성화!" / "다크 모드 비활성화!") in the `setTheme` function.
-2.  **Verify:** Test if food images are now displaying more appropriately and quickly, and if the theme toggle text changes correctly in Korean.
-3.  **Commit and Push:** Stage, commit, and push the changes to the GitHub repository.
+    *   Replaced `imageKeyword` with `imageUrl` in the `dinnerMenus` array, using specific, curated URLs for each food item.
+    *   Modified the `displayMenu` function to use `menu.imageUrl` directly.
+2.  **Update `style.css`:**
+    *   Implemented a subtle gradient background for the `body` element, defined using CSS variables that adapt to light and dark modes.
+3.  **Verify:** Test if food images now consistently match their names, load quickly, and if the background is aesthetically pleasing in both themes.
+4.  **Commit and Push:** Stage, commit, and push the changes to the GitHub repository.

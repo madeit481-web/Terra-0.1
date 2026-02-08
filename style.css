@@ -1,25 +1,29 @@
 :root {
     --primary-color: #ff6f61; /* Coral */
     --secondary-color: #6b5b95; /* Amethyst */
-    --background-color: #f4f7f6; /* Light Grayish Green */
+    --background-color-light: #f8f9fa; /* Lighter background for gradients */
+    --background-color-dark: #e0e7e9; /* Darker background for gradients */
     --card-background: #ffffff; /* White */
     --text-color: #333333; /* Dark Gray */
     --shadow-color: rgba(0, 0, 0, 0.15);
     --button-hover-color: #e65c50;
     --button-shadow-hover: rgba(0, 0, 0, 0.2);
     --button-shadow-active: rgba(0, 0, 0, 0.1);
+    --body-background: linear-gradient(135deg, var(--background-color-light) 0%, var(--background-color-dark) 100%);
 }
 
 body.dark-mode {
     --primary-color: #8c0000; /* Darker Coral */
     --secondary-color: #926fb1; /* Lighter Amethyst */
-    --background-color: #1a1a1a; /* Dark background */
+    --background-color-light: #2c3e50; /* Darker background for gradients */
+    --background-color-dark: #34495e; /* Even darker background for gradients */
     --card-background: #2c2c2c; /* Darker card background */
     --text-color: #e0e0e0; /* Light gray text */
     --shadow-color: rgba(255, 255, 255, 0.1);
     --button-hover-color: #a30000;
     --button-shadow-hover: rgba(255, 255, 255, 0.2);
     --button-shadow-active: rgba(255, 255, 255, 0.1);
+    --body-background: linear-gradient(135deg, var(--background-color-light) 0%, var(--background-color-dark) 100%);
 }
 
 body {
@@ -29,12 +33,12 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: var(--background-color);
+    background: var(--body-background); /* Use the new gradient variable */
     color: var(--text-color);
     line-height: 1.6;
     padding: 20px;
     box-sizing: border-box;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+    transition: background 0.5s ease, color 0.3s ease; /* Smooth transition for theme change */
 }
 
 .theme-switch-wrapper {

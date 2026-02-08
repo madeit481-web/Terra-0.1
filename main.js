@@ -42,37 +42,37 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "스테이크 (Steak)",
             description: "육즙 가득한 스테이크에 구운 채소를 곁들인 고급스러운 저녁 식사.",
-            imageKeyword: "steak"
+            imageUrl: "https://images.unsplash.com/photo-1546069901-dcded722d325"
         },
         {
             name: "파스타 (Pasta)",
             description: "신선한 토마토 소스와 바질로 맛을 낸 이탈리아 파스타.",
-            imageKeyword: "pasta"
+            imageUrl: "https://images.unsplash.com/photo-1551887201-97b7cb1d7e26"
         },
         {
             name: "초밥 (Sushi)",
             description: "다양한 신선한 해산물로 만든 일본 전통 초밥 세트.",
-            imageKeyword: "sushi"
+            imageUrl: "https://images.unsplash.com/photo-1579584425316-f36615f79590"
         },
         {
             name: "한정식 (Korean Full Course Meal)",
             description: "다채로운 반찬과 메인 요리로 구성된 푸짐한 한국 전통 한정식.",
-            imageKeyword: "korean food"
+            imageUrl: "https://images.unsplash.com/photo-1577905470535-f09c2a6d7b2e"
         },
         {
             name: "타코 (Taco)",
             description: "매콤한 고기와 신선한 채소가 어우러진 멕시칸 타코.",
-            imageKeyword: "taco"
+            imageUrl: "https://images.unsplash.com/photo-1565299624946-b28f40a0298e"
         },
         {
             name: "피자 (Pizza)",
             description: "쭉 늘어나는 치즈와 토핑이 일품인 따끈따끈한 피자.",
-            imageKeyword: "pizza"
+            imageUrl: "https://images.unsplash.com/photo-1604382164746-cf10be807dd5"
         },
         {
             name: "샐러드 (Salad)",
             description: "신선한 채소와 닭가슴살, 드레싱이 어우러진 건강한 샐러드.",
-            imageKeyword: "salad"
+            imageUrl: "https://images.unsplash.com/photo-1540189549336-e619d08e2d42"
         }
     ];
 
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Hide image until loaded to prevent flickering
         menuImage.style.opacity = '0';
-        menuImage.src = `https://loremflickr.com/800/600/${menu.imageKeyword},food,plate,isolated,high-quality?cache=${new Date().getTime()}`;
+        menuImage.src = menu.imageUrl; // Use direct image URL
         menuImage.alt = menu.name;
 
         menuImage.onload = () => {
