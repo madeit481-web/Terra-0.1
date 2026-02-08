@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const menuImage = document.getElementById('menu-image');
+    console.log('menuImage element selected:', menuImage); // Debug log
     const menuName = document.getElementById('menu-name');
     const menuDescription = document.getElementById('menu-description');
     const recommendBtn = document.getElementById('recommend-btn');
@@ -88,13 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Hide image until loaded to prevent flickering
         menuImage.style.opacity = '0';
+        console.log('Attempting to load image:', menu.imageUrl); // Debug log
         menuImage.src = menu.imageUrl; // Use direct image URL
         menuImage.alt = menu.name;
 
         menuImage.onload = () => {
+            console.log('Image loaded successfully:', menu.imageUrl); // Debug log
             menuImage.style.opacity = '1'; // Show image once loaded
         };
         menuImage.onerror = () => {
+            console.error('Image failed to load:', menu.imageUrl); // Debug log
             menuImage.src = 'https://via.placeholder.com/800x600?text=이미지를+불러올+수+없습니다.'; // Fallback image
             menuImage.alt = '이미지를 불러올 수 없습니다.';
             menuImage.style.opacity = '1'; // Show fallback image

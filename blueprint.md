@@ -14,17 +14,23 @@ This project is a simple web application demonstrating basic HTML, CSS, and Java
     - **Troubleshooting History:**
         - Initial attempts using `unsplash.com` and `loremflickr.com` for image sourcing led to issues (hotlinking restrictions, inconsistent matching, perceived slow loading).
         - Attempted solution with specific, directly embeddable, high-quality Pixabay URLs for each menu item to ensure accurate matching, reliability, and faster loading.
-    - **Current Troubleshooting Step:** Temporarily replaced all custom image URLs with generic `https://via.placeholder.com` URLs to isolate whether the image loading issue is due to the image sources themselves or the JavaScript loading mechanism.
+        - Previous troubleshooting step: Temporarily replaced all custom image URLs with generic `https://via.placeholder.com` URLs to isolate whether the image loading issue is due to the image sources themselves or the JavaScript loading mechanism.
+    - **Current Troubleshooting Step:** Added `console.log` statements to `main.js` to trace image element selection, URL assignment, and `onload`/`onerror` events.
     - Implemented a loading mechanism to hide the image (`opacity: 0`) until it's fully loaded (`onload` event), then make it visible (`opacity: 1`), to improve perceived loading speed and prevent flickering.
 - **Trendy Background:**
     - Implemented a subtle, modern gradient background using CSS variables, adapting to both light and dark modes.
 
-## Plan for Current Change: Isolate Image Loading Issue with Placeholder Images
+## Plan for Current Change: Debug Image Loading with Console Logs
 
 ### Steps:
 1.  **Update `main.js`:**
-    *   Replaced all `imageUrl`s in the `dinnerMenus` array with `https://via.placeholder.com/800x600?text=[Menu Name]` for testing purposes.
-    *   Confirmed the `displayMenu` function correctly uses `menu.imageUrl`.
-    *   Re-verified that theme text localization and image loading mechanisms are intact.
-2.  **Verify (User Confirmation):** The user needs to confirm if these placeholder images now appear on the website.
-3.  **Commit and Push:** Stage, commit, and push this troubleshooting version to the GitHub repository.
+    *   Added `console.log` statements to:
+        *   Confirm `menuImage` element selection.
+        *   Log the `imageUrl` being assigned to `menuImage.src`.
+        *   Log when `menuImage.onload` and `menuImage.onerror` events fire.
+    *   Ensured placeholder images are still in use for this debug step.
+2.  **User Action Required (Verification):** The user needs to:
+    *   Visit the updated website.
+    *   Open their browser's developer console (usually by pressing F12).
+    *   Report any messages or errors visible in the console, especially those starting with "menuImage element selected:", "Attempting to load image:", "Image loaded successfully:", or "Image failed to load:".
+3.  **Commit and Push:** Stage, commit, and push this debugging version to the GitHub repository.
