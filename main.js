@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function setTheme(isDarkMode) {
         if (isDarkMode) {
             body.classList.add('dark-mode');
-            themeText.textContent = 'Disable Dark Mode!';
+            themeText.textContent = '다크 모드 비활성화!';
         } else {
             body.classList.remove('dark-mode');
-            themeText.textContent = 'Enable Dark Mode!';
+            themeText.textContent = '다크 모드 활성화!';
         }
     }
 
@@ -85,15 +85,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const menu = getRandomMenu();
         menuName.textContent = menu.name;
         menuDescription.textContent = menu.description;
-        // Using Picsum Photos for random images with a specific keyword.
-        // The image will be different each time because of the random size and keyword.
-        menuImage.src = `https://loremflickr.com/800/600/${menu.imageKeyword},food?cache=${new Date().getTime()}`;
+
+        // Hide image until loaded to prevent flickering
+        menuImage.style.opacity = '0';
+        menuImage.src = `https://loremflickr.com/800/600/${menu.imageKeyword},food,plate,isolated,high-quality?cache=${new Date().getTime()}`;
         menuImage.alt = menu.name;
 
-        // Optional: Add error handling for image loading
+        menuImage.onload = () => {
+            menuImage.style.opacity = '1'; // Show image once loaded
+        };
         menuImage.onerror = () => {
-            menuImage.src = 'https://via.placeholder.com/800x600?text=Image+Not+Found'; // Fallback image
+            menuImage.src = 'https://via.placeholder.com/800x600?text=이미지를+불러올+수+없습니다.'; // Fallback image
             menuImage.alt = '이미지를 불러올 수 없습니다.';
+            menuImage.style.opacity = '1'; // Show fallback image
         };
     }
 
