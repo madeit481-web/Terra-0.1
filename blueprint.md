@@ -9,19 +9,16 @@ This project is a simple web application demonstrating basic HTML, CSS, and Java
     - A toggle button in `index.html` to switch between themes.
     - CSS styles defined in `style.css` using CSS variables to manage colors for both dark and light themes.
     - JavaScript logic in `main.js` to handle theme switching, save user preference to `localStorage`, and apply the theme on page load.
+- **Improved Image Display:**
+    - Changed image source from `source.unsplash.com` to `loremflickr.com` for better reliability and relevance.
+    - Added cache busting parameter to image URLs.
+    - Implemented basic error handling for image loading with a fallback placeholder.
 
-## Plan for Current Change: Implement Dark/Light Mode
+## Plan for Current Change: Improve Food Image Display
 
 ### Steps:
-1.  **Update `index.html`:** Add a theme toggle button.
-2.  **Update `style.css`:**
-    *   Define CSS variables for colors (e.g., `--text-color`, `--background-color`).
-    *   Create a `.dark-mode` class to override these variables for the dark theme.
-3.  **Update `main.js`:**
-    *   Get references to the theme toggle and the `body` element.
-    *   Implement a function to toggle the `dark-mode` class on the `body`.
-    *   Add an event listener to the toggle button.
-    *   Implement logic to save and load the theme preference using `localStorage`.
-    *   Apply the initial theme based on `localStorage` or system preference.
-4.  **Verify:** Test the dark/light mode functionality.
-5.  **Commit and Push:** Stage, commit, and push the changes to the GitHub repository.
+1.  **Update `main.js`:**
+    *   Change the image source URL to `https://loremflickr.com/800/600/${menu.imageKeyword},food?cache=${new Date().getTime()}`.
+    *   Add an `onerror` event handler to `menuImage` to display a fallback image if loading fails.
+2.  **Verify:** Test if food images are now displaying correctly and beautifully.
+3.  **Commit and Push:** Stage, commit, and push the changes to the GitHub repository.

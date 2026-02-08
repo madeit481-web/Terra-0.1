@@ -87,8 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
         menuDescription.textContent = menu.description;
         // Using Picsum Photos for random images with a specific keyword.
         // The image will be different each time because of the random size and keyword.
-        menuImage.src = `https://source.unsplash.com/random/800x600/?${menu.imageKeyword},food`;
+        menuImage.src = `https://loremflickr.com/800/600/${menu.imageKeyword},food?cache=${new Date().getTime()}`;
         menuImage.alt = menu.name;
+
+        // Optional: Add error handling for image loading
+        menuImage.onerror = () => {
+            menuImage.src = 'https://via.placeholder.com/800x600?text=Image+Not+Found'; // Fallback image
+            menuImage.alt = '이미지를 불러올 수 없습니다.';
+        };
     }
 
     // Display a menu on initial load
