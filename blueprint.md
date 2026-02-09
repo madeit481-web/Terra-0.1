@@ -1,33 +1,33 @@
-# Project: Terra-0.1
+# 프로젝트 개요
 
-## Overview
-This project is a simple web application demonstrating basic HTML, CSS, and JavaScript functionalities. It aims to provide a clean and responsive user interface.
+이 프로젝트는 저녁 메뉴를 추천하는 간단한 웹 애플리케이션입니다. 테마 전환기(밝은 모드/어두운 모드)를 제공하며, 이미지, 이름, 설명과 함께 무작위 저녁 메뉴를 표시합니다.
 
-## Project Outline
-- **Initial Setup:** Basic `index.html`, `style.css`, and `main.js` for a web page.
-- **Dark/Light Mode Feature:**
-    - A toggle button in `index.html` to switch between themes.
-    - CSS styles defined in `style.css` using CSS variables to manage colors for both dark and light themes.
-    - JavaScript logic in `main.js` to handle theme switching, save user preference to `localStorage`, and apply the theme on page load.
-    - Localized theme toggle text to Korean.
-- **Improved Image Display:**
-    - **Troubleshooting History & Diagnosis:**
-        - Initial attempts using `unsplash.com` and `loremflickr.com` for image sourcing led to issues (hotlinking restrictions, inconsistent matching, perceived slow loading).
-        - Attempted solution with specific, directly embeddable, high-quality Pixabay URLs for each menu item, but `net::ERR_NAME_NOT_RESOLVED` indicated a network/DNS resolution issue on the user's side, preventing access to external image domains.
-    - **Current Solution (Local Placeholders):**
-        *   Created local SVG placeholder image files (`images/steak.svg`, `images/pasta.svg`, etc.) for each menu item, containing the food name as text on a plain white background.
-        *   Created a local SVG error image (`images/error.svg`) for fallback.
-        *   `main.js` updated to reference these local image paths.
-    - Implemented a loading mechanism to hide the image (`opacity: 0`) until it's fully loaded (`onload` event), then make it visible (`opacity: 1`), to improve perceived loading speed and prevent flickering.
-- **Trendy Background:**
-    - Implemented a subtle, modern gradient background using CSS variables, adapting to both light and dark modes.
+# 구현된 기능
 
-## Plan for Current Change: Implement Local Placeholder Images
+## 초기 버전
+- **테마 전환기**: 사용자가 밝은 모드와 어두운 모드 사이를 전환할 수 있습니다. 설정은 로컬 저장소에 저장됩니다.
+- **저녁 메뉴 추천**: 이름과 설명을 포함한 무작위 저녁 메뉴 항목을 표시합니다.
+- **"다른 메뉴 추천!" 버튼**: 클릭하면 새로운 무작위 저녁 메뉴를 제안하는 버튼입니다.
+- **반응형 디자인**: 다양한 화면 크기에 맞게 레이아웃이 조정됩니다.
 
-### Steps:
-1.  **Generate Local SVG Images:** Created 7 SVG files (e.g., `images/steak.svg`) with food names as text for each menu item, plus `images/error.svg` as a fallback.
-2.  **Update `main.js`:**
-    *   Updated `imageUrl`s in the `dinnerMenus` array to reference the new local SVG paths.
-    *   Modified the `onerror` fallback to `images/error.svg`.
-3.  **Verify:** Confirm that the local SVG placeholder images are now displaying correctly on the website, addressing the `net::ERR_NAME_NOT_RESOLVED` issue.
-4.  **Commit and Push:** Stage, commit, and push this version to the GitHub repository.
+## 현재 버전
+- **메뉴 이미지 표시**: 각 추천 저녁 메뉴는 이제 `images/` 디렉토리에서 가져온 해당 이미지를 표시합니다. 이미지 `src`는 각 메뉴 항목의 `imageUrl` 속성을 기반으로 `main.js`에서 동적으로 업데이트됩니다.
+- **이미지 로딩 견고성**: JavaScript는 이미지를 표시하려고 시도하고, 이미지를 로드하지 못할 경우 로컬 `error.svg`로 폴백하는 방식으로 이미지 로딩을 처리합니다. 이전의 깜빡임 방지를 위한 불투명도 기반 로직은 이미지 로드 시 즉각적인 가시성을 보장하기 위해 제거되었습니다.
+
+# 현재 변경 사항에 대한 계획
+
+사용자께서 "글씨만 뜨는데 음식이미지를 음식이름에 맞게 해줘"라고 요청하셨습니다.
+조사 결과, `main.js`에는 이미 이미지 표시 로직이 포함되어 있었고, `imageUrl` 경로는 기존 파일을 가리키고 있었습니다. 문제는 깜빡임 방지를 위한 불투명도 조작 로직과 관련이 있을 것으로 추정되었습니다.
+
+## 수행된 단계:
+1.  **`index.html` 읽기**: `menu-image`, `menu-name`, `menu-description`의 구조를 확인했습니다.
+2.  **`main.js` 읽기**: `dinnerMenus` 배열에 이미 `imageUrl` 경로가 포함되어 있었고, `displayMenu` 함수가 `menuImage.src`를 설정하고 있음을 확인했습니다.
+3.  **`images/` 디렉토리 목록 확인**: 이미지 파일(`steak.svg`, `pasta.svg` 등)이 존재하며 이름이 `imageUrl` 경로와 일치함을 확인했습니다.
+4.  **`style.css` 읽기**: 이미지가 표시되는 것을 직접적으로 방해하는 CSS 규칙이 없음을 확인했습니다.
+5.  **`main.js` 수정**: `displayMenu` 함수 및 `onload`/`onerror` 핸들러에서 `menuImage.style.opacity` 조작을 제거했습니다. 이는 `src`가 설정되는 즉시 브라우저가 이미지를 표시하도록 보장합니다.
+
+이 변경 사항은 사용자 요청을 직접적으로 해결하여 음식 이미지가 이름 및 설명과 함께 일관되게 표시되도록 합니다.
+
+---
+
+또한, `GEMINI.md`의 Firebase 통합 지침에 따라 `.idx/mcp.json` 파일에 Firebase 서버 구성을 추가했습니다.
