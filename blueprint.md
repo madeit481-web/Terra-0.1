@@ -6,28 +6,25 @@
 
 ## 초기 버전
 - **테마 전환기**: 사용자가 밝은 모드와 어두운 모드 사이를 전환할 수 있습니다. 설정은 로컬 저장소에 저장됩니다.
-- **저녁 메뉴 추천**: 이름과 설명을 포함한 무작위 저녁 메뉴 항목을 표시합니다.
-- **"다른 메뉴 추천!" 버튼**: 클릭하면 새로운 무작위 저녁 메뉴를 제안하는 버튼입니다.
-- **반응형 디자인**: 다양한 화면 크기에 맞게 레이아웃이 조정됩니다.
+- **저녁 메뉴 추천**: Displays a random dinner menu item including its name and description.
+- **"Recommend Another Menu!" Button**: A button that, when clicked, suggests a new random dinner menu.
+- **Responsive Design**: The layout adapts to different screen sizes.
 
-## 현재 버전
-- **메뉴 이미지 표시**: 각 추천 저녁 메뉴는 이제 `images/` 디렉토리에서 가져온 해당 이미지를 표시합니다. 이미지 `src`는 각 메뉴 항목의 `imageUrl` 속성을 기반으로 `main.js`에서 동적으로 업데이트됩니다.
-- **이미지 로딩 견고성**: JavaScript는 이미지를 표시하려고 시도하고, 이미지를 로드하지 못할 경우 로컬 `error.svg`로 폴백하는 방식으로 이미지 로딩을 처리합니다. 이전의 깜빡임 방지를 위한 불투명도 기반 로직은 이미지 로드 시 즉각적인 가시성을 보장하기 위해 제거되었습니다.
+## Current Version
+- **메뉴 이미지 표시**: 각 추천 저녁 메뉴는 이제 `images/` 디렉토리에서 가져온 해당 이미지를 표시합니다. 이미지 `src`는 동적으로 업데이트됩니다.
+- **이미지 로딩 견고성**: JavaScript는 이미지를 표시하려고 시도하고, 이미지를 로드하지 못할 경우 로컬 `error.svg`로 폴백합니다.
+- **디버깅을 위한 콘솔 로깅 추가**: 이미지 로딩 문제를 진단하기 위해 `main.js`에 `console.log` 및 `console.error` 문을 추가했습니다. 이는 `imageUrl`이 할당될 때, 이미지가 성공적으로 로드될 때, 또는 로드에 실패할 때 관련 정보를 콘솔에 출력합니다.
 
 # 현재 변경 사항에 대한 계획
 
-사용자께서 "글씨만 뜨는데 음식이미지를 음식이름에 맞게 해줘"라고 요청하셨습니다.
-조사 결과, `main.js`에는 이미 이미지 표시 로직이 포함되어 있었고, `imageUrl` 경로는 기존 파일을 가리키고 있었습니다. 문제는 깜빡임 방지를 위한 불투명도 조작 로직과 관련이 있을 것으로 추정되었습니다.
+사용자께서 "음식사진이 여전히 안나와. 음식이미지 만들어서 코딩해봐."라고 요청하셨습니다. 이전 수정(이미지 `opacity` 제어 제거)에도 불구하고 이미지가 표시되지 않는다고 하므로, 추가적인 디버깅이 필요합니다.
 
 ## 수행된 단계:
-1.  **`index.html` 읽기**: `menu-image`, `menu-name`, `menu-description`의 구조를 확인했습니다.
-2.  **`main.js` 읽기**: `dinnerMenus` 배열에 이미 `imageUrl` 경로가 포함되어 있었고, `displayMenu` 함수가 `menuImage.src`를 설정하고 있음을 확인했습니다.
-3.  **`images/` 디렉토리 목록 확인**: 이미지 파일(`steak.svg`, `pasta.svg` 등)이 존재하며 이름이 `imageUrl` 경로와 일치함을 확인했습니다.
-4.  **`style.css` 읽기**: 이미지가 표시되는 것을 직접적으로 방해하는 CSS 규칙이 없음을 확인했습니다.
-5.  **`main.js` 수정**: `displayMenu` 함수 및 `onload`/`onerror` 핸들러에서 `menuImage.style.opacity` 조작을 제거했습니다. 이는 `src`가 설정되는 즉시 브라우저가 이미지를 표시하도록 보장합니다.
+1.  **`images/steak.svg` 내용 확인**: SVG 파일 자체는 유효한 텍스트 기반 플레이스홀더 이미지임을 확인했습니다.
+2.  **`main.js` 수정**: 이미지 로딩 과정을 추적하기 위해 `displayMenu` 함수에 `console.log` 및 `console.error` 문을 추가했습니다.
+    *   `menu.imageUrl`이 `menuImage.src`에 할당되기 전에 콘솔에 출력됩니다.
+    *   `menuImage.onload` 이벤트 발생 시 성공 메시지가 콘솔에 출력됩니다.
+    *   `menuImage.onerror` 이벤트 발생 시 오류 메시지와 함께 실패한 `imageUrl`이 콘솔에 출력됩니다.
+3.  **다음 단계**: 사용자로부터 애플리케이션의 콘솔 로그를 확인하거나, 추가적인 디버깅 정보를 요청할 예정입니다.
 
-이 변경 사항은 사용자 요청을 직접적으로 해결하여 음식 이미지가 이름 및 설명과 함께 일관되게 표시되도록 합니다.
-
----
-
-또한, `GEMINI.md`의 Firebase 통합 지침에 따라 `.idx/mcp.json` 파일에 Firebase 서버 구성을 추가했습니다.
+이 디버깅 단계는 이미지가 실제로 로드되는지, 로드에 실패한다면 어떤 URL로 실패하는지, 또는 `onload`/`onerror` 이벤트 자체가 발생하지 않는지 등을 파악하는 데 도움이 될 것입니다.

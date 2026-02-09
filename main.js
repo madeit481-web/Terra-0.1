@@ -86,16 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
         menuName.textContent = menu.name;
         menuDescription.textContent = menu.description;
 
+        console.log('Attempting to load image:', menu.imageUrl); // Log the image URL
         menuImage.src = menu.imageUrl; // Use direct image URL
         menuImage.alt = menu.name;
 
         menuImage.onload = () => {
-            // menuImage.style.opacity = '1'; // Show image once loaded
+            console.log('Image loaded successfully:', menu.imageUrl); // Log on successful load
         };
         menuImage.onerror = () => {
+            console.error('Failed to load image:', menu.imageUrl); // Log on error
             menuImage.src = 'images/error.svg'; // Fallback to local error image
             menuImage.alt = '이미지를 불러올 수 없습니다.';
-            // menuImage.style.opacity = '1'; // Show fallback image
         };
     }
 
